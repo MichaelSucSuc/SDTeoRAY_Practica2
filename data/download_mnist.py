@@ -1,13 +1,11 @@
-from torchvision import datasets, transforms
+from torchvision import datasets
 
 from src.config import DATA_DIR
+from src.utils import get_mnist_transform
 
 
 def main() -> None:
-    transform = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize((0.1307,), (0.3081,)),
-    ])
+    transform = get_mnist_transform()
     datasets.MNIST(root=DATA_DIR, train=True, download=True, transform=transform)
     datasets.MNIST(root=DATA_DIR, train=False, download=True, transform=transform)
 
